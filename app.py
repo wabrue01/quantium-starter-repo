@@ -38,25 +38,23 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
     ),
     
 
-    html.Div([
-        dcc.RadioItems(
-            options=['south', 'east', 'north', 'west', 'all'],
-            value='all',
-            id='xaxis-type',
-            inline=True
-        )
-    ]),
+    dcc.RadioItems(
+        options=['south', 'east', 'north', 'west', 'all'],
+        value='all',
+        id='region_buttons',
+        inline=True
+        ),
 
     dcc.Graph(
-        id='example-graph-3',
+        id='sales_graph',
         figure=fig
     )
 ])
 
 
 @callback(
-    Output('example-graph-3', 'figure'),
-    Input('xaxis-type', 'value')
+    Output('sales_graph', 'figure'),
+    Input('region_buttons', 'value')
 )
 def update_graph(selected_region):
     # Filter regions
